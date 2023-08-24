@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous">
+
+        <!-- FontAwesome 6.2.0 CSS -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+        <link rel="stylesheet" href="../css/style.css">
+
+    </head>
+
+    <body>
+        <header id="home">
+
+            <div class="headerContent">
+                <div class="imgLogo">
+                    <img src="./../asset/img/logo.png" alt="">
+                </div>
+                <div class="headerNav">
+                    <ul>
+                        <li><img src="../asset/img/shopping_cart.png" alt=""></li>
+                        <li><a href="">Login</a></li>
+                        <li><a href="./register.html">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Men</a></li>
+                    <li><a href="">Woman</a></li>
+                    <li><a href="">Kid</a></li>
+                    <li><a href="">Sport</a></li>
+                </ul>
+            </div>
+
+        </header>
+        <section class="formInfo">
+            <div class="container">
+                <div class="formImg">
+                    <img id="productImage" src="../asset/img/product.png"
+                        alt="Product Image">
+                </div>
+                <div class="formText" id="productDetails">
+                    <!-- Product details will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="product">
+            <div class="container">
+                <div class="content">
+                    <h1>- Related Products -</h1>
+                </div>
+                <div class="menu" id="relatedProducts">
+                    <!-- Related product cards will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <script>
+        // Function to get URL parameter by name
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        async function fetchProductDetails(productId) {
+            try {
+                const apiUrl = `https://shop.cyberlearn.vn/api/Product/getbyid?id=${productId}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const productImage = document.getElementById('productImage');
+                const productDetails = document.getElementById('productDetails');
+
+                productImage.src = data.content.image;
+
+                const textTitle = document.createElement('div');
+                textTitle.classList.add('textTitle');
+                const h1 = document.createElement('h1');
+                h1.textContent = data.content.name;
+                const p = document.createElement('p');
+                p.textContent = data.content.description;
+                const h4 = document.createElement('h4');
+                h4.textContent = 'Available size';
+                const sizeDiv = document.createElement('div');
+                sizeDiv.classList.add('size');
+                data.content.size.forEach(size => {
+                    const button = document.createElement('button');
+                    button.classList.add('sizeNum');
+                    button.textContent = size;
+                    sizeDiv.appendChild(button);
+                });
+
+                const price = document.createElement('h2');
+                price.classList.add('priceProduct');
+                price.textContent = data.content.price + '$';
+
+                textTitle.appendChild(h1);
+                textTitle.appendChild(p);
+                textTitle.appendChild(h4);
+                textTitle.appendChild(sizeDiv);
+                textTitle.appendChild(price);
+
+                productDetails.appendChild(textTitle);
+
+                // Add quantity controls and "Add To Cart" button as needed
+
+                const relatedProducts = document.getElementById('relatedProducts');
+
+                data.content.relatedProducts.forEach(relatedProduct => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    const imgProduct = document.createElement('div');
+                    imgProduct.classList.add('imgProduct');
+                    const img = document.createElement('img');
+                    img.src = relatedProduct.image;
+                    img.alt = relatedProduct.name;
+                    imgProduct.appendChild(img);
+                    card.appendChild(imgProduct);
+
+                    const textProduct = document.createElement('div');
+                    textProduct.classList.add('textProduct');
+                    const h2 = document.createElement('h2');
+                    h2.textContent = relatedProduct.name;
+                    const h3 = document.createElement('h3');
+                    h3.textContent = relatedProduct.shortDescription;
+                    textProduct.appendChild(h2);
+                    textProduct.appendChild(h3);
+                    card.appendChild(textProduct);
+
+                    const button = document.createElement('div');
+                    button.classList.add('button');
+                    const bt1 = document.createElement('div');
+                    bt1.classList.add('bt1');
+                    const a = document.createElement('a');
+                    a.href = `./productDetail.html?id=${relatedProduct.id}`;
+                    a.textContent = 'Buy Now';
+                    bt1.appendChild(a);
+                    const bt2 = document.createElement('div');
+                    bt2.classList.add('bt2');
+                    bt2.textContent = relatedProduct.price + '$';
+                    button.appendChild(bt1);
+                    button.appendChild(bt2);
+                    card.appendChild(button);
+
+                    relatedProducts.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        }
+        const productId = getUrlParameter('id');
+
+        fetchProductDetails(productId);
+    </script>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous">
+  </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous">
+  </script>
+        <script src="../index.js"></script>
+    </body>
+
+</html>

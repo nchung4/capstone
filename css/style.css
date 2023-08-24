@@ -1,0 +1,172 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #000000;
+  color: #F6F6F6;
+}
+header .headerContent {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+header .headerContent ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+header .headerContent ul li {
+  margin-right: 15px;
+}
+header .headerContent ul li a {
+  text-decoration: none;
+  color: #F6F6F6;
+}
+header .nav {
+  background-color: #F6F6F6;
+}
+header .nav ul {
+  display: flex;
+}
+header .nav ul li {
+  margin-right: 20px;
+  padding-top: 10px;
+}
+header .nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 20px;
+}
+
+.carousel .carouselContent img {
+  width: 100%;
+  height: auto;
+}
+
+.product {
+  background-color: #FFFCFC;
+  margin: 20px;
+  padding: 20px;
+}
+.product .content h1 {
+  font-weight: 400;
+  font-size: 40px;
+  text-align: center;
+}
+.product .menu .card {
+  float: left;
+  width: 30%;
+  position: relative;
+  margin: 1.5%;
+}
+.product .menu .card .imgProduct img {
+  width: 100%;
+  height: auto;
+}
+.product .menu .card .textProduct {
+  padding: 20px;
+}
+.product .menu .card .textProduct h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+.product .menu .card .textProduct h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #CBC9C9;
+}
+.product .menu .card .button .bt1 {
+  background-color: #E1B067;
+  float: left;
+  width: 60%;
+  text-align: center;
+  padding: 10px;
+}
+.product .menu .card .button .bt1 a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 400;
+  background-color: #E1B067;
+}
+.product .menu .card .button .bt2 {
+  background-color: #DEDDDC;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: right;
+  padding: 10px;
+}
+
+.formInfo .container {
+  display: flex;
+  justify-content: space-around;
+}
+.formInfo .container .formImg {
+  width: auto;
+  height: auto;
+  background-color: #F8F8F8;
+  text-align: center;
+  padding: 10%;
+  margin-right: 60px;
+}
+.formInfo .container .formText {
+  padding-top: 20px;
+}
+.formInfo .container .formText .textTitle h4 {
+  color: #1ED90E;
+}
+.formInfo .container .formText .textTitle .size {
+  display: flex;
+  justify-content: space-around;
+  font-size: 24px;
+  font-weight: 600;
+}
+.formInfo .container .formText .textTitle .size .sizeNum {
+  background-color: #DEDDDC;
+  width: 40px;
+  height: auto;
+  text-align: center;
+  border: none;
+  margin-right: 10px;
+}
+.formInfo .container .formText .textTitle .priceProduct {
+  color: red;
+  font-size: 24px;
+  font-weight: 600;
+}
+.formInfo .container .formText .quantity {
+  display: flex;
+  align-items: center;
+}
+.formInfo .container .formText .quantity .derease {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.formInfo .container .formText .quantity button:hover {
+  background-color: #0056b3;
+}
+.formInfo .container .formText .quantity .count {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.formInfo .container .formText .btn {
+  background-color: rgba(62, 32, 248, 0.8980392157), #D017EE;
+}/*# sourceMappingURL=style.css.map */

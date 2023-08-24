@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@200;300;400&display=swap"
+        rel="stylesheet">
+
+        <!-- axios -->
+
+
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header id="home">
+
+        <div class="headerContent">
+            <div class="imgLogo">
+                <img src="./../asset/img/logo.png" alt="">
+            </div>
+            <div class="headerNav">
+                <ul>
+                    <li><img src="../asset/img/shopping_cart.png" alt=""></li>
+                    <li><a href="">Login</a></li>
+                    <li><a href="./register.html">Register</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Men</a></li>
+                <li><a href="">Woman</a></li>
+                <li><a href="">Kid</a></li>
+                <li><a href="">Sport</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+    <section class="carousel">
+       <div class="carouselContent">
+            <img src="../asset/img/Carousel.png" alt="">
+       </div>
+    </section>
+
+    <section class="product">
+        <div class="container">
+            <div class="content">
+                <h1>-Product Feature -</h1>
+            </div>
+            <div class="menu" id="productContainer">
+               
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        // Replace with the actual API endpoint URL
+        const apiUrl = 'https://shop.cyberlearn.vn/api/Product';
+
+        // Function to fetch and populate products
+        async function fetchProducts() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const productContainer = document.getElementById('productContainer');
+
+                // Loop through the products and create product cards
+                data.content.forEach(product => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    const imgProduct = document.createElement('div');
+                    imgProduct.classList.add('imgProduct');
+                    const img = document.createElement('img');
+                    img.src = product.image;
+                    img.alt = product.name;
+                    imgProduct.appendChild(img);
+                    card.appendChild(imgProduct);
+
+                    const textProduct = document.createElement('div');
+                    textProduct.classList.add('textProduct');
+                    const h2 = document.createElement('h2');
+                    h2.textContent = product.name;
+                    const h3 = document.createElement('h3');
+                    h3.textContent = product.shortDescription;
+                    textProduct.appendChild(h2);
+                    textProduct.appendChild(h3);
+                    card.appendChild(textProduct);
+
+                    const button = document.createElement('div');
+                    button.classList.add('button');
+                    const bt1 = document.createElement('div');
+                    bt1.classList.add('bt1');
+                    const a = document.createElement('a');
+                    a.href = `./productDetail.html?id=${product.id}`; // Link to product details page with ID
+                    a.textContent = 'Buy Now';
+                    bt1.appendChild(a);
+                    const bt2 = document.createElement('div');
+                    bt2.classList.add('bt2');
+                    bt2.textContent = product.price + '$';
+                    button.appendChild(bt1);
+                    button.appendChild(bt2);
+                    card.appendChild(button);
+
+                    productContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to fetch and populate products
+        fetchProducts();
+    </script>
+
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+<!-- axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../index.js"></script>
+<script>
+    
+</script>
+    
+</body>
+
+</html>
