@@ -105,6 +105,11 @@ header .nav ul li a {
   padding: 10px;
 }
 
+.formInfo .container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .form {
   margin-bottom: 50px;
 }
